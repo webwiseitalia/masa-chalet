@@ -1,32 +1,53 @@
-import bgImg from '../assets/foto/foto-8.webp'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import bgImg from '../assets/foto/foto-31.webp'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Quote() {
+  const ref = useRef()
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.quote-text', { y: 60, opacity: 0, skewY: 3 }, {
+        y: 0, opacity: 1, skewY: 0, duration: 1.4, ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 60%' }
+      })
+
+      gsap.fromTo('.quote-attr', { y: 30, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 50%' }
+      })
+
+      gsap.to('.quote-bg', {
+        yPercent: 25,
+        ease: 'none',
+        scrollTrigger: { trigger: ref.current, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+      })
+    }, ref)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="relative py-32 md:py-40 overflow-hidden">
-      {/* Background */}
+    <section ref={ref} className="relative overflow-hidden" style={{ padding: 'var(--space-2xl) 0' }}>
       <div className="absolute inset-0">
-        <img
-          src={bgImg}
-          alt=""
-          className="w-full h-full object-cover"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-masa-black/80" />
+        <img src={bgImg} alt="" className="quote-bg w-full h-[130%] object-cover" style={{ objectPosition: 'center 30%' }} aria-hidden="true" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, var(--c-black) 0%, rgba(10,15,10,0.75) 30%, rgba(10,15,10,0.75) 70%, var(--c-black) 100%)' }} />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-3xl mx-auto text-center section-padding">
-        <svg className="w-10 h-10 text-masa-gold/40 mx-auto mb-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z"/>
-        </svg>
-        <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl italic text-masa-cream/90 leading-relaxed mb-8">
-          Siamo più di semplici cuochi: siamo creatori di emozioni gastronomiche,
-          appassionati nel trasformare ogni piatto in un'opera d'arte per il palato.
+      <div className="relative z-10" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', maxWidth: '900px', marginLeft: 'clamp(1rem, 10vw, 12rem)' }}>
+        <span className="rule-accent" style={{ marginBottom: 'var(--space-md)', display: 'block' }} />
+        <blockquote className="quote-text" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'var(--text-2xl)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
+          Siamo più di semplici cuochi: siamo creatori di emozioni gastronomiche, appassionati nel trasformare ogni piatto in un&rsquo;opera d&rsquo;arte per il palato.
         </blockquote>
-        <div className="gold-separator mb-6" />
-        <p className="text-masa-gold tracking-[0.3em] uppercase text-xs">
-          Emanuele &amp; Samantha
-        </p>
+        <div className="quote-attr" style={{ marginTop: 'var(--space-md)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span className="rule-accent" />
+          <span style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)' }}>
+            Emanuele &amp; Samantha
+          </span>
+        </div>
       </div>
     </section>
   )

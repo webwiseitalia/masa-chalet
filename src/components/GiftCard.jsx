@@ -1,50 +1,63 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import giftImg from '../assets/foto/foto-32.webp'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function GiftCard() {
+  const ref = useRef()
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.gift-img', { x: 80, opacity: 0, rotate: 3 }, {
+        x: 0, opacity: 1, rotate: 0, duration: 1.2, ease: 'power3.out',
+        scrollTrigger: { trigger: ref.current, start: 'top 70%' }
+      })
+
+      gsap.fromTo('.gift-text > *', { y: 40, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.gift-text', start: 'top 75%' }
+      })
+    }, ref)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="giftcard" className="py-24 md:py-32 bg-masa-dark/50">
-      <div className="max-w-7xl mx-auto section-padding">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
-          <div>
-            <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-4">Un regalo speciale</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold mb-6">
-              Regala Masa Chalet
-            </h2>
-            <div className="w-12 h-[1px] bg-masa-gold mb-8" />
-            <p className="text-masa-cream/70 text-lg leading-relaxed mb-6">
-              Un'esperienza speciale, fatta di cose buone, di cibo cucinato con passione:
-              regala un buono degustazione.
-            </p>
-            <p className="text-masa-cream/60 leading-relaxed mb-10">
-              Decidi tu che tipo di esperienza donare. La nostra Gift Card è il pensiero
-              perfetto per chi ama la buona cucina e le emozioni autentiche.
-            </p>
+    <section ref={ref} id="giftcard" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark-warm)' }}>
+      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1.5rem, 3vw, 3rem)', alignItems: 'center' }}>
+        <div className="gift-text" style={{ gridColumn: '1 / 7' }}>
+          <p style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
+            Un regalo speciale
+          </p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', fontWeight: 500, lineHeight: 0.95, marginBottom: 'var(--space-sm)' }}>
+            Regala<br />
+            <span style={{ fontStyle: 'italic', paddingLeft: 'clamp(1rem, 3vw, 3rem)', color: 'var(--c-sage)' }}>Masa Chalet</span>
+          </h2>
+          <span className="rule-accent" style={{ margin: 'var(--space-md) 0' }} />
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="tel:+390346320081"
-                className="px-8 py-3 bg-masa-gold text-masa-black font-semibold tracking-[0.15em] uppercase text-sm hover:bg-masa-gold-light transition-all duration-300 text-center"
-              >
-                Chiamaci
-              </a>
-              <a
-                href="mailto:info@masachalet.it"
-                className="px-8 py-3 border border-masa-cream/30 text-masa-cream tracking-[0.15em] uppercase text-sm hover:border-masa-gold hover:text-masa-gold transition-all duration-300 text-center"
-              >
-                Scrivici
-              </a>
-            </div>
-          </div>
+          <p style={{ fontSize: 'var(--text-base)', color: 'var(--c-cream-muted)', lineHeight: 1.8, marginBottom: 'var(--space-sm)', maxWidth: '440px' }}>
+            Un'esperienza speciale, fatta di cose buone, di cibo cucinato con passione:
+            regala un buono degustazione.
+          </p>
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8, marginBottom: 'var(--space-lg)', maxWidth: '440px' }}>
+            Decidi tu che tipo di esperienza donare. La nostra Gift Card è il pensiero
+            perfetto per chi ama la buona cucina e le emozioni autentiche.
+          </p>
 
-          {/* Image */}
-          <div className="relative">
-            <img
-              src={giftImg}
-              alt="Gift Card Masa Chalet - Buono degustazione"
-              className="w-full aspect-[4/3] object-cover"
-            />
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <a href="tel:+390346320081" style={{ padding: '0.85rem 2rem', background: 'var(--c-sage)', color: 'var(--c-black)', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 'var(--text-xs)', transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+              Chiamaci
+            </a>
+            <a href="mailto:info@masachalet.it" style={{ padding: '0.85rem 2rem', border: '1px solid rgba(240,233,220,0.3)', color: 'var(--c-cream)', letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: 'var(--text-xs)', transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+              Scrivici
+            </a>
           </div>
+        </div>
+
+        <div className="gift-img" style={{ gridColumn: '7 / 13' }}>
+          <img src={giftImg} alt="Gift Card Masa Chalet" className="w-full object-cover" style={{ aspectRatio: '4/3' }} />
         </div>
       </div>
     </section>

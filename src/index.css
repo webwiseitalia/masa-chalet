@@ -2,103 +2,178 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --c-black: #0a0f0a;
+  --c-dark: #131a13;
+  --c-dark-warm: #1a2219;
+  --c-cream: #f0ede6;
+  --c-cream-muted: #b8b5ab;
+  --c-gold: #3d5a3a;
+  --c-gold-dim: rgba(61, 90, 58, 0.15);
+  --c-green: #4a6741;
+  --c-green-muted: rgba(74, 103, 65, 0.3);
+  --c-sage: #a8b9a0;
+  --c-sage-light: #c2cebb;
+  --c-accent: #c9a96e;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', 'Helvetica Neue', sans-serif;
+
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(1rem, 2vw, 1.5rem);
+  --space-md: clamp(2rem, 4vw, 3.5rem);
+  --space-lg: clamp(4rem, 8vw, 7rem);
+  --space-xl: clamp(6rem, 12vw, 11rem);
+  --space-2xl: clamp(8rem, 16vw, 15rem);
+
+  --text-xs: clamp(0.65rem, 0.6rem + 0.25vw, 0.75rem);
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
+  --text-base: clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem);
+  --text-lg: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(2.8rem, 2rem + 4vw, 5.5rem);
+  --text-hero: clamp(3.5rem, 2.5rem + 6vw, 9rem);
+  --text-massive: clamp(5rem, 3rem + 10vw, 14rem);
+}
+
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+    overflow-x: hidden;
   }
 
   body {
-    background-color: #1a1a1a;
-    color: #f5f0e8;
-    font-family: 'Lato', 'Helvetica Neue', sans-serif;
+    background-color: var(--c-black);
+    color: var(--c-cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   ::selection {
-    background-color: rgba(201, 169, 110, 0.3);
-    color: #f5f0e8;
+    background-color: rgba(168, 185, 160, 0.3);
+    color: var(--c-cream);
+  }
+
+  img {
+    display: block;
   }
 }
 
-@layer components {
-  .section-padding {
-    @apply px-6;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--c-black); }
+::-webkit-scrollbar-thumb { background: rgba(168, 185, 160, 0.3); }
+::-webkit-scrollbar-thumb:hover { background: var(--c-sage); }
 
-  .gold-separator {
-    width: 4rem;
-    height: 1px;
-    background-color: #c9a96e;
-    margin-left: auto;
-    margin-right: auto;
+/* Utility classes for the creative layout */
+.reveal-line .line {
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-line .line > div {
+  transform: translateY(110%);
+}
+
+.char-reveal .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(60px) rotate(5deg);
+}
+
+.img-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0s;
+}
+
+.img-reveal.is-revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Horizontal rule accent */
+.rule-accent {
+  width: 60px;
+  height: 1px;
+  background: var(--c-sage);
+  display: block;
+}
+
+/* Stagger container for GSAP */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Mobile responsive: stack 12-col grids on small screens */
+@media (max-width: 768px) {
+  .masa-intro {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .masa-intro > * {
+    grid-column: auto !important;
+  }
+  .masa-filosofia > div {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .masa-filosofia > div > * {
+    grid-column: auto !important;
+  }
+  .persona-grid {
+    display: flex !important;
+    flex-direction: column;
+  }
+  .persona-grid .persona-card {
+    margin-top: 0 !important;
+  }
+  .menu-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gal-grid {
+    columns: 2 !important;
   }
 }
 
-@media (min-width: 768px) {
-  .section-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
+@media (max-width: 480px) {
+  .gal-grid {
+    columns: 1 !important;
   }
 }
 
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
+/* Smooth anchor scroll offset for fixed navbar */
+section[id] {
+  scroll-margin-top: 80px;
 }
 
-@media (min-width: 1280px) {
-  .section-padding {
-    padding-left: 8rem;
-    padding-right: 8rem;
-  }
+/* Links hover states */
+a {
+  text-decoration: none;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Lenis overrides */
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c9a96e40;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #c9a96e80;
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

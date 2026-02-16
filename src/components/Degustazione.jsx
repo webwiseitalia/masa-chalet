@@ -1,77 +1,107 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import chefPlating from '../assets/foto/foto-10.webp'
 import piatto from '../assets/foto/foto-34.webp'
 
+gsap.registerPlugin(ScrollTrigger)
+
+const options = [
+  { label: '5 Portate', price: '65', note: 'a persona, escluso coperto e bevande' },
+  { label: '4 Portate', price: '55', note: 'a persona, escluso coperto e bevande' },
+  { label: 'Abbinamento Vini', price: '25', note: '3 calici selezionati, a persona', accent: true },
+]
+
 export default function Degustazione() {
+  const ref = useRef()
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.deg-img-main', { clipPath: 'inset(100% 0 0 0)' }, {
+        clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.deg-img-main', start: 'top 75%' }
+      })
+
+      gsap.fromTo('.deg-img-side', { clipPath: 'inset(0 0 0 100%)' }, {
+        clipPath: 'inset(0 0 0 0%)', duration: 1.2, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.deg-img-side', start: 'top 80%' }
+      })
+
+      gsap.fromTo('.deg-content > *', { y: 40, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: '.deg-content', start: 'top 70%' }
+      })
+    }, ref)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="degustazione" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto section-padding">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <div className="relative order-2 lg:order-1">
-            <img
-              src={chefPlating}
-              alt="Piatto servito dallo Chef"
-              className="w-full aspect-[3/4] object-cover"
-            />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border border-masa-gold/30" />
+    <section ref={ref} id="degustazione" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)' }}>
+      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1rem, 2vw, 2rem)', alignItems: 'start' }}>
+        {/* Images column — stacked, offset */}
+        <div style={{ gridColumn: '1 / 6', position: 'relative' }}>
+          <div className="deg-img-main overflow-hidden">
+            <img src={chefPlating} alt="Piatto servito dallo Chef" className="w-full object-cover" style={{ aspectRatio: '3/4' }} />
+          </div>
+          <div className="deg-img-side hidden md:block" style={{ position: 'absolute', right: '-20%', bottom: '-8%', width: '55%', zIndex: 2 }}>
+            <img src={piatto} alt="Dessert artistico" className="w-full object-cover" style={{ aspectRatio: '4/5', border: '3px solid var(--c-black)' }} />
+          </div>
+        </div>
+
+        {/* Content column — offset right and down */}
+        <div className="deg-content" style={{ gridColumn: '7 / 13', paddingTop: 'clamp(3rem, 8vw, 10rem)' }}>
+          <p style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
+            Un percorso unico
+          </p>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', fontWeight: 500, lineHeight: 0.95, marginBottom: 'var(--space-sm)' }}>
+            Menu<br />
+            <span style={{ fontStyle: 'italic', paddingLeft: 'clamp(1rem, 4vw, 3rem)' }}>Degustazione</span>
+          </h2>
+          <span className="rule-accent" style={{ margin: 'var(--space-md) 0' }} />
+
+          <blockquote style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'var(--text-lg)', color: 'var(--c-cream-muted)', marginBottom: 'var(--space-md)' }}>
+            &ldquo;Il cibo trova sempre chi ama cucinare.&rdquo;
+          </blockquote>
+
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8, marginBottom: 'var(--space-lg)', maxWidth: '480px' }}>
+            Il nostro menù degustazione è un percorso tra le ispirazioni dello chef,
+            i produttori locali e la ricerca del prodotto. Lasciatevi ispirare e
+            affidatevi completamente all&rsquo;idea dello Chef.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.75rem, 1.5vw, 1rem)', marginBottom: 'var(--space-md)' }}>
+            {options.map((opt) => (
+              <div key={opt.label} style={{ padding: 'clamp(1rem, 2vw, 1.5rem)', border: opt.accent ? '1px solid var(--c-sage)' : '1px solid rgba(240,233,220,0.08)', background: opt.accent ? 'var(--c-gold-dim)' : 'transparent', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', color: opt.accent ? 'var(--c-sage)' : 'var(--c-cream)' }}>{opt.label}</span>
+                  <span style={{ display: 'block', fontSize: 'var(--text-xs)', color: 'var(--c-cream-muted)', marginTop: '0.25rem' }}>{opt.note}</span>
+                </div>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', color: 'var(--c-sage)' }}>&euro;{opt.price}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Content */}
-          <div className="order-1 lg:order-2">
-            <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-4">Un percorso unico</p>
-            <h2 className="font-serif text-4xl md:text-5xl font-semibold mb-6">
-              Menu Degustazione
-            </h2>
-            <div className="w-12 h-[1px] bg-masa-gold mb-8" />
+          <p style={{ fontSize: 'var(--text-xs)', color: 'var(--c-cream-muted)', fontStyle: 'italic', marginBottom: 'var(--space-md)' }}>
+            Il menù degustazione è inteso per l&rsquo;intero tavolo.
+          </p>
 
-            <blockquote className="text-masa-cream/70 text-xl leading-relaxed font-serif italic mb-8">
-              "Il cibo trova sempre chi ama cucinare."
-            </blockquote>
-
-            <p className="text-masa-cream/60 leading-relaxed mb-10">
-              Il nostro menù degustazione è un percorso tra le ispirazioni dello chef,
-              i produttori locali e la ricerca del prodotto. Lasciatevi ispirare e
-              affidatevi completamente all'idea dello Chef.
-            </p>
-
-            {/* Pricing cards */}
-            <div className="space-y-4 mb-10">
-              <div className="border border-masa-cream/10 p-6 hover:border-masa-gold/30 transition-colors duration-300">
-                <div className="flex items-baseline justify-between mb-2">
-                  <h4 className="font-serif text-xl text-masa-cream">5 Portate</h4>
-                  <span className="text-masa-gold font-serif text-2xl">€65</span>
-                </div>
-                <p className="text-masa-cream/40 text-sm">a persona, escluso coperto e bevande</p>
-              </div>
-
-              <div className="border border-masa-cream/10 p-6 hover:border-masa-gold/30 transition-colors duration-300">
-                <div className="flex items-baseline justify-between mb-2">
-                  <h4 className="font-serif text-xl text-masa-cream">4 Portate</h4>
-                  <span className="text-masa-gold font-serif text-2xl">€55</span>
-                </div>
-                <p className="text-masa-cream/40 text-sm">a persona, escluso coperto e bevande</p>
-              </div>
-
-              <div className="border border-masa-gold/30 p-6 bg-masa-gold/5">
-                <div className="flex items-baseline justify-between mb-2">
-                  <h4 className="font-serif text-xl text-masa-gold">Abbinamento Vini</h4>
-                  <span className="text-masa-gold font-serif text-2xl">€25</span>
-                </div>
-                <p className="text-masa-cream/40 text-sm">3 calici selezionati, a persona</p>
-              </div>
-            </div>
-
-            <p className="text-masa-cream/40 text-xs italic mb-8">
-              Il menù degustazione è inteso per l'intero tavolo.
-            </p>
-
-            <a
-              href="tel:+390346320081"
-              className="inline-block px-8 py-3 bg-masa-gold text-masa-black font-semibold tracking-[0.15em] uppercase text-sm hover:bg-masa-gold-light transition-all duration-300"
-            >
-              Prenota la degustazione
-            </a>
-          </div>
+          <a
+            href="tel:+390346320081"
+            style={{
+              display: 'inline-block',
+              padding: '0.85rem 2rem',
+              background: 'var(--c-sage)',
+              color: 'var(--c-black)',
+              fontWeight: 600,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              fontSize: 'var(--text-xs)',
+              transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            Prenota la degustazione
+          </a>
         </div>
       </div>
     </section>

@@ -1,56 +1,63 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import piatto1 from '../assets/foto/foto-4.webp'
-import piatto2 from '../assets/foto/foto-41.webp'
+import piatto2 from '../assets/foto/foto-38.webp'
+import piatto3 from '../assets/foto/foto-2.webp'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const antipasti = [
   { nome: 'Uovo panato, castagne, Strachitunt', prezzo: '16' },
   { nome: 'Crudo di cervo, cremoso di cavolfiore caramellato, uova di trota e anice stellato', prezzo: '20', tags: ['senza glutine', 'senza lattosio'] },
-  { nome: 'Trota Oro Alpina, beurre blanc al bergamotto, cardoncelli, alga nori sott\'aceto e olio al pino mugo', prezzo: null },
-  { nome: 'Radicchio tardivo, cremoso di ceci, arancia candita e rosmarino', prezzo: null },
+  { nome: "Trota Oro Alpina, beurre blanc al bergamotto, cardoncelli, alga nori sott'aceto e olio al pino mugo" },
+  { nome: 'Radicchio tardivo, cremoso di ceci, arancia candita e rosmarino' },
   { nome: 'Culatta di Langhirano, giardiniera fatta in casa', prezzo: '20' },
 ]
 
 const primi = [
-  { nome: 'Risotto mantecato con scorza nera, mela anurca, aceto di sambuco e alloro', prezzo: null },
+  { nome: 'Risotto mantecato con scorza nera, mela anurca, aceto di sambuco e alloro' },
   { nome: 'Bottoni ai tre arrosti, salsa di pane, lievito e verza', prezzo: '22' },
-  { nome: 'Tagliatella al ragù vegetale, carota concentrata e peperone crusco', prezzo: null },
-  { nome: 'Pasta mista, cotta in brodo di pollo, patate di Rovetta, tè nero e pesci di lago affumicati', prezzo: null },
+  { nome: 'Tagliatella al ragù vegetale, carota concentrata e peperone crusco' },
+  { nome: 'Pasta mista, cotta in brodo di pollo, patate di Rovetta, tè nero e pesci di lago affumicati' },
 ]
 
 const secondi = [
-  { nome: 'Costolette d\'agnello arrostite, cime di rapa e cipollotto', prezzo: null },
-  { nome: 'Salmerino arrostito sulla pelle, bisque di lago, il suo collagene e crema di porcini', prezzo: null },
-  { nome: 'Petto d\'anatra al rosa, fondo al vermut e cavolo nero', prezzo: null },
-  { nome: 'Guancetta di manzo cotta lentamente, topinambur', prezzo: null },
+  { nome: "Costolette d'agnello arrostite, cime di rapa e cipollotto" },
+  { nome: 'Salmerino arrostito sulla pelle, bisque di lago, il suo collagene e crema di porcini' },
+  { nome: "Petto d'anatra al rosa, fondo al vermut e cavolo nero" },
+  { nome: 'Guancetta di manzo cotta lentamente, topinambur' },
 ]
 
-function MenuCategory({ title, items }) {
+function MenuSection({ title, items, index }) {
   return (
-    <div className="mb-14">
-      <h3 className="font-serif text-2xl md:text-3xl text-masa-gold mb-8 text-center">
+    <div className="menu-category" style={{ marginBottom: 'var(--space-lg)' }}>
+      <h3 style={{
+        fontFamily: 'var(--font-display)',
+        fontSize: 'var(--text-xl)',
+        color: 'var(--c-sage)',
+        marginBottom: 'var(--space-md)',
+        fontStyle: index % 2 === 0 ? 'normal' : 'italic',
+      }}>
         {title}
       </h3>
-      <div className="space-y-6">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(1rem, 2vw, 1.5rem)' }}>
         {items.map((item, i) => (
-          <div key={i} className="group">
-            <div className="flex items-baseline gap-3">
-              <span className="text-masa-cream/90 text-base md:text-lg flex-1">
-                {item.nome}
-              </span>
-              <span className="flex-shrink-0 border-b border-dotted border-masa-cream/20 flex-1 min-w-[40px] max-w-[120px] hidden sm:block" />
-              {item.prezzo && (
-                <span className="text-masa-gold font-serif text-lg flex-shrink-0">
-                  €{item.prezzo}
+          <div key={i} className="menu-item" style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', paddingBottom: 'clamp(0.75rem, 1.5vw, 1rem)', borderBottom: '1px solid rgba(240,233,220,0.06)' }}>
+            <span style={{ flex: 1, fontSize: 'var(--text-base)', color: 'var(--c-cream)', lineHeight: 1.5 }}>
+              {item.nome}
+              {item.tags && (
+                <span style={{ display: 'inline-flex', gap: '0.5rem', marginLeft: '0.75rem' }}>
+                  {item.tags.map(t => (
+                    <span key={t} style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--c-green)', border: '1px solid var(--c-green-muted)', padding: '0.15rem 0.5rem' }}>{t}</span>
+                  ))}
                 </span>
               )}
-            </div>
-            {item.tags && (
-              <div className="flex gap-2 mt-2">
-                {item.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] tracking-[0.15em] uppercase text-masa-green-light/80 border border-masa-green-light/30 px-2 py-0.5">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            </span>
+            {item.prezzo && (
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', color: 'var(--c-sage)', flexShrink: 0 }}>
+                &euro;{item.prezzo}
+              </span>
             )}
           </div>
         ))}
@@ -60,52 +67,60 @@ function MenuCategory({ title, items }) {
 }
 
 export default function Menu() {
+  const ref = useRef()
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.menu-heading', { y: 100, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+        scrollTrigger: { trigger: '.menu-heading', start: 'top 85%' }
+      })
+
+      gsap.fromTo('.menu-img', { clipPath: 'inset(0 0 100% 0)' }, {
+        clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'power4.inOut', stagger: 0.2,
+        scrollTrigger: { trigger: '.menu-images', start: 'top 75%' }
+      })
+
+      gsap.fromTo('.menu-category', { y: 40, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out',
+        scrollTrigger: { trigger: '.menu-body', start: 'top 75%' }
+      })
+    }, ref)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="menu" className="py-24 md:py-32 bg-masa-dark/50">
-      <div className="max-w-4xl mx-auto section-padding">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-4">Sapori d'alta quota</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold mb-6">
-            Il nostro Menù
-          </h2>
-          <div className="gold-separator mb-8" />
-          <p className="max-w-xl mx-auto text-masa-cream/60 leading-relaxed font-light">
-            Un forte legame con piccoli produttori che ci forniscono il meglio,
-            rispettando le stagioni e il territorio.
-          </p>
+    <section ref={ref} id="menu" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark)' }}>
+      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', marginBottom: 'var(--space-lg)' }}>
+        <p className="menu-heading" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
+          Sapori d&rsquo;alta quota
+        </p>
+        <h2 className="menu-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-massive)', fontWeight: 500, lineHeight: 0.85, letterSpacing: '-0.03em', opacity: 0.12 }}>
+          Menù
+        </h2>
+        <h2 className="menu-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', fontWeight: 500, lineHeight: 1, marginTop: '-0.5em', position: 'relative', zIndex: 2 }}>
+          Il nostro Menù
+        </h2>
+      </div>
+
+      <div className="menu-images" style={{ display: 'grid', gridTemplateColumns: '2fr 1.2fr 1.5fr', gap: 'clamp(0.5rem, 1vw, 0.75rem)', padding: '0 clamp(1.5rem, 4vw, 3rem)', marginBottom: 'var(--space-xl)' }}>
+        <div className="menu-img overflow-hidden"><img src={piatto1} alt="Tortelli con brodo" className="w-full object-cover" style={{ aspectRatio: '4/3' }} /></div>
+        <div className="menu-img overflow-hidden" style={{ marginTop: 'clamp(2rem, 5vw, 5rem)' }}><img src={piatto2} alt="Piatto gourmet colorato" className="w-full object-cover" style={{ aspectRatio: '3/4' }} /></div>
+        <div className="menu-img overflow-hidden"><img src={piatto3} alt="Crudo con salsa verde" className="w-full object-cover" style={{ aspectRatio: '4/5' }} /></div>
+      </div>
+
+      <div className="menu-body" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)' }}>
+        <div className="menu-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(2rem, 5vw, 5rem)' }}>
+          <MenuSection title="Antipasti" items={antipasti} index={0} />
+          <MenuSection title="Primi Piatti" items={primi} index={1} />
+          <MenuSection title="Secondi Piatti" items={secondi} index={2} />
         </div>
 
-        {/* Immagini decorative */}
-        <div className="grid grid-cols-2 gap-4 mb-16">
-          <img
-            src={piatto1}
-            alt="Piatto dello chef con salsa"
-            className="w-full aspect-[4/3] object-cover"
-          />
-          <img
-            src={piatto2}
-            alt="Tartare con tartufo"
-            className="w-full aspect-[4/3] object-cover"
-          />
-        </div>
-
-        {/* Menu categories */}
-        <MenuCategory title="Antipasti" items={antipasti} />
-        <div className="gold-separator mb-14" />
-        <MenuCategory title="Primi Piatti" items={primi} />
-        <div className="gold-separator mb-14" />
-        <MenuCategory title="Secondi Piatti" items={secondi} />
-
-        {/* Note */}
-        <div className="mt-16 text-center">
-          <p className="text-masa-cream/40 text-sm italic">
-            Il menù è stagionale e soggetto a variazioni in base alla disponibilità dei prodotti.
-          </p>
-          <p className="text-masa-cream/40 text-sm italic mt-1">
-            Per allergie e intolleranze, comunicatelo al nostro staff.
-          </p>
-        </div>
+        <p style={{ fontSize: 'var(--text-xs)', color: 'var(--c-cream-muted)', fontStyle: 'italic', marginTop: 'var(--space-md)', lineHeight: 1.8, textAlign: 'center' }}>
+          Il menù è stagionale e soggetto a variazioni in base alla disponibilità dei prodotti.
+          Per allergie e intolleranze, comunicatelo al nostro staff.
+        </p>
       </div>
     </section>
   )

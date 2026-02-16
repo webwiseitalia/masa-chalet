@@ -1,96 +1,176 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import chefImg from '../assets/foto/foto-33.webp'
 import samanthaImg from '../assets/foto/foto-35.webp'
 import salaImg from '../assets/foto/foto-40.webp'
+import detailImg from '../assets/foto/foto-8.webp'
+import heroPlate from '../assets/foto/foto-37.webp'
+import logo from '../assets/logomasachalet-Photoroom.webp'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Masa() {
-  return (
-    <section id="masa" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto section-padding">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-4">Chi siamo</p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold mb-6">
-            Scopri Masa Chalet
-          </h2>
-          <div className="gold-separator mb-8" />
-          <p className="max-w-2xl mx-auto text-masa-cream/70 text-lg leading-relaxed font-light">
-            Nel cuore del Passo della Presolana, dove l'arte culinaria incontra
-            la bellezza delle Orobie. Un viaggio sensoriale tra tradizione e innovazione.
-          </p>
-        </div>
+  const sectionRef = useRef()
 
-        {/* Filosofia block */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
-          <div className="relative">
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.masa-title', { y: 80, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+        scrollTrigger: { trigger: '.masa-title', start: 'top 85%' }
+      })
+
+      gsap.fromTo('.masa-sala', { clipPath: 'inset(0 100% 0 0)' }, {
+        clipPath: 'inset(0 0% 0 0)', duration: 1.4, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.masa-sala', start: 'top 75%' }
+      })
+
+      gsap.fromTo('.masa-detail', { clipPath: 'inset(100% 0 0 0)', opacity: 0 }, {
+        clipPath: 'inset(0% 0 0 0)', opacity: 1, duration: 1.2, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.masa-detail', start: 'top 80%' }
+      })
+
+      gsap.fromTo('.masa-text-block', { y: 50, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+        scrollTrigger: { trigger: '.masa-filosofia', start: 'top 70%' }
+      })
+
+      gsap.fromTo('.persona-card', { y: 80, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 1, stagger: 0.25, ease: 'power3.out',
+        scrollTrigger: { trigger: '.persona-grid', start: 'top 75%' }
+      })
+
+      gsap.to('.masa-sala img', {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: { trigger: '.masa-sala', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+      })
+
+      gsap.fromTo('.masa-hero-plate', { clipPath: 'inset(100% 0 0 0)' }, {
+        clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.masa-hero-plate', start: 'top 80%' }
+      })
+
+      gsap.fromTo('.masa-bg-logo', { opacity: 0, scale: 0.9 }, {
+        opacity: 0.05, scale: 1, duration: 1.5, ease: 'power2.out',
+        scrollTrigger: { trigger: '.masa-bg-logo', start: 'top 90%' }
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section ref={sectionRef} id="masa" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-2xl)', position: 'relative', overflow: 'hidden' }}>
+      <img
+        src={logo}
+        alt=""
+        aria-hidden="true"
+        className="masa-bg-logo hidden md:block"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: 'clamp(4rem, 10vw, 10rem)',
+          transform: 'translateX(-50%)',
+          width: 'clamp(500px, 60vw, 900px)',
+          opacity: 0,
+          pointerEvents: 'none',
+          filter: 'grayscale(0.4)',
+        }}
+      />
+      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', position: 'relative', zIndex: 1 }}>
+        <div className="masa-hero-plate hidden md:block" style={{ position: 'absolute', left: 'clamp(1.5rem, 4vw, 3rem)', top: 0, width: 'clamp(280px, 35vw, 520px)', overflow: 'hidden' }}>
+          <img
+            src={heroPlate}
+            alt="Piatto gourmet dello chef"
+            className="w-full object-cover"
+            style={{ aspectRatio: '3/4' }}
+          />
+        </div>
+        <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'clamp(1rem, 8vw, 10rem)', position: 'relative', zIndex: 2 }}>
+          <p className="masa-title" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
+            Chi siamo
+          </p>
+          <h2 className="masa-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', fontWeight: 500, lineHeight: 0.95, marginBottom: 'var(--space-sm)' }}>
+            Scopri<br />
+            <span style={{ paddingLeft: 'clamp(2rem, 6vw, 6rem)', fontStyle: 'italic', color: 'var(--c-sage)' }}>Masa</span> Chalet
+          </h2>
+          <span className="rule-accent" style={{ marginLeft: 'clamp(2rem, 6vw, 6rem)' }} />
+        </div>
+      </div>
+
+      <div className="masa-filosofia" style={{ marginTop: 'var(--space-lg)', position: 'relative' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)' }}>
+          <div className="masa-sala" style={{ gridColumn: '1 / 8', overflow: 'hidden' }}>
             <img
               src={salaImg}
               alt="Sala del ristorante Masa Chalet"
-              className="w-full aspect-[4/3] object-cover"
+              className="w-full object-cover"
+              style={{ aspectRatio: '16/11' }}
             />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-masa-gold/30" />
           </div>
-          <div>
-            <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-4">La nostra filosofia</p>
-            <h3 className="font-serif text-3xl md:text-4xl mb-6">
-              L'evoluzione della tradizione
-            </h3>
-            <div className="w-12 h-[1px] bg-masa-gold mb-6" />
-            <blockquote className="text-masa-cream/70 text-lg leading-relaxed font-light italic border-l-2 border-masa-gold/30 pl-6 mb-6">
-              "Ci insegnano che bisogna viaggiare per scoprire nuovi gusti o trovare prodotti unici,
-              tante volte basta solo guardarsi attorno."
-            </blockquote>
-            <p className="text-masa-cream/60 leading-relaxed mb-4">
-              Un forte legame con piccoli produttori che ci forniscono il meglio, rispettando
-              le stagioni e il territorio. Dalla Valle Seriana alla Val di Scalve, ogni ingrediente
-              racconta una storia.
+
+          <div style={{ gridColumn: '6 / 13', gridRow: '1', alignSelf: 'center', position: 'relative', zIndex: 2, padding: 'clamp(2rem, 5vw, 5rem)', background: 'var(--c-dark-warm)', marginTop: 'clamp(3rem, 8vw, 8rem)', marginBottom: 'clamp(1rem, 3vw, 3rem)' }}>
+            <p className="masa-text-block" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
+              La nostra filosofia
             </p>
-            <p className="text-masa-cream/60 leading-relaxed">
-              A pranzo, i sapori della tradizione bergamasca — paste fresche, sughi ben fatti, polenta.
-              A cena, la creatività prende forma in piatti d'autore con abbinamenti inaspettati
-              e tecniche contemporanee.
+            <h3 className="masa-text-block" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', lineHeight: 1.15, marginBottom: 'var(--space-md)' }}>
+              L&rsquo;evoluzione<br />della tradizione
+            </h3>
+            <blockquote className="masa-text-block" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'var(--text-base)', color: 'var(--c-cream-muted)', lineHeight: 1.7, borderLeft: '2px solid var(--c-gold-dim)', paddingLeft: 'var(--space-sm)', marginBottom: 'var(--space-md)' }}>
+              &ldquo;Ci insegnano che bisogna viaggiare per scoprire nuovi gusti o trovare prodotti unici, tante volte basta solo guardarsi attorno.&rdquo;
+            </blockquote>
+            <p className="masa-text-block" style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8, marginBottom: 'var(--space-sm)' }}>
+              Un forte legame con piccoli produttori che ci forniscono il meglio, rispettando
+              le stagioni e il territorio. Dalla Valle Seriana alla Val di Scalve, ogni ingrediente racconta una storia.
+            </p>
+            <p className="masa-text-block" style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8 }}>
+              A pranzo, i sapori della tradizione bergamasca. A cena, la creatività prende forma in piatti d&rsquo;autore
+              con abbinamenti inaspettati e tecniche contemporanee.
             </p>
           </div>
         </div>
 
-        {/* Emanuele & Samantha */}
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Chef Emanuele */}
-          <div className="group">
-            <div className="overflow-hidden mb-6">
-              <img
-                src={chefImg}
-                alt="Chef Emanuele Bruneo"
-                className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-2">Lo Chef</p>
-            <h3 className="font-serif text-2xl md:text-3xl mb-4">Emanuele Bruneo</h3>
-            <p className="text-masa-cream/60 leading-relaxed">
-              Con origini meridionali e il cuore nelle Orobie, Emanuele ha trasformato la sua
-              più grande passione in una professione. Completamente autodidatta, ha aperto
-              Masa Chalet con la determinazione di chi crede nei propri sogni. Ogni piatto
-              è un'opera d'arte che fonde tradizione bergamasca e ricordi del Sud.
-            </p>
-          </div>
+        <div className="masa-detail hidden md:block" style={{ position: 'absolute', left: 'clamp(3rem, 8vw, 8rem)', bottom: '-3rem', width: 'clamp(140px, 14vw, 220px)', zIndex: 3 }}>
+          <img src={detailImg} alt="Dettaglio cucina" className="w-full object-cover" style={{ aspectRatio: '1/1', border: '1px solid rgba(168,185,160,0.2)' }} />
+        </div>
+      </div>
 
-          {/* Samantha */}
-          <div className="group">
-            <div className="overflow-hidden mb-6">
-              <img
-                src={samanthaImg}
-                alt="Samantha - Sala e accoglienza"
-                className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <p className="text-masa-gold tracking-[0.3em] uppercase text-xs mb-2">La Sala</p>
-            <h3 className="font-serif text-2xl md:text-3xl mb-4">Samantha</h3>
-            <p className="text-masa-cream/60 leading-relaxed">
-              Anima dell'accoglienza, Samantha trasforma ogni cena in un'esperienza speciale.
-              Con eleganza e simpatia racconta i piatti, consiglia gli abbinamenti e crea
-              quell'atmosfera calda e familiare che fa tornare ogni ospite.
-              Insieme a Emanuele, nella vita e nel lavoro.
-            </p>
+      <div className="persona-grid" style={{ marginTop: 'var(--space-2xl)', padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1.5rem, 3vw, 2rem)' }}>
+        <div className="persona-card" style={{ gridColumn: '1 / 7' }}>
+          <div className="overflow-hidden" style={{ marginBottom: 'var(--space-sm)' }}>
+            <img
+              src={chefImg}
+              alt="Chef Emanuele Bruneo"
+              className="w-full object-cover transition-transform duration-1000 hover:scale-105"
+              style={{ aspectRatio: '3/4' }}
+            />
           </div>
+          <p style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: '0.5rem' }}>Lo Chef</p>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', marginBottom: 'var(--space-sm)' }}>Emanuele Bruneo</h3>
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8, maxWidth: '420px' }}>
+            Con origini meridionali e il cuore nelle Orobie, Emanuele ha trasformato la sua
+            più grande passione in una professione. Completamente autodidatta, ha aperto
+            Masa Chalet con la determinazione di chi crede nei propri sogni.
+          </p>
+        </div>
+
+        <div className="persona-card" style={{ gridColumn: '8 / 13', marginTop: 'clamp(4rem, 10vw, 12rem)' }}>
+          <div className="overflow-hidden" style={{ marginBottom: 'var(--space-sm)' }}>
+            <img
+              src={samanthaImg}
+              alt="Samantha - Sala e accoglienza"
+              className="w-full object-cover transition-transform duration-1000 hover:scale-105"
+              style={{ aspectRatio: '3/4' }}
+            />
+          </div>
+          <p style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: '0.5rem' }}>La Sala</p>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', marginBottom: 'var(--space-sm)' }}>Samantha</h3>
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--c-cream-muted)', lineHeight: 1.8, maxWidth: '420px' }}>
+            Anima dell&rsquo;accoglienza, Samantha trasforma ogni cena in un&rsquo;esperienza speciale.
+            Con eleganza e simpatia racconta i piatti, consiglia gli abbinamenti e crea
+            quell&rsquo;atmosfera calda che fa tornare ogni ospite.
+          </p>
         </div>
       </div>
     </section>
