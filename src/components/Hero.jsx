@@ -3,7 +3,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import logo from '../assets/logomasachalet-Photoroom.webp'
 import heroImg from '../assets/foto/foto-42.webp'
-import sideImg from '../assets/foto/foto-10.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,13 +13,15 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
-      tl.fromTo('.hero-img', { scale: 1.3, clipPath: 'inset(100% 0 0 0)' }, { scale: 1, clipPath: 'inset(0% 0 0 0)', duration: 0.9 })
-        .fromTo('.hero-side-img', { clipPath: 'inset(0 100% 0 0)', opacity: 0 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 0.7 }, '-=0.5')
-        .fromTo('.hero-logo', { opacity: 0, scale: 0.7, rotate: -10 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.6 }, '-=0.5')
-        .fromTo('.hero-title span', { y: 120, opacity: 0, skewY: 8 }, { y: 0, opacity: 1, skewY: 0, duration: 0.6, stagger: 0.08 }, '-=0.4')
-        .fromTo('.hero-claim', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, '-=0.2')
-        .fromTo('.hero-location', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, '-=0.2')
-        .fromTo('.hero-cta', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.15')
+      tl.fromTo('.hero-img', { scale: 1.3 }, { scale: 1, duration: 1.2 })
+        .fromTo('.hero-overlay', { opacity: 0 }, { opacity: 1, duration: 0.6 }, '-=0.8')
+        .fromTo('.hero-logo', { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.7 }, '-=0.3')
+        .fromTo('.hero-title span', { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.08 }, '-=0.4')
+        .fromTo('.hero-line-bottom', { scaleX: 0 }, { scaleX: 1, duration: 0.5 }, '-=0.2')
+        .fromTo('.hero-claim', { opacity: 0, letterSpacing: '0.5em' }, { opacity: 1, letterSpacing: '0.3em', duration: 0.6 }, '-=0.2')
+        .fromTo('.hero-location', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, '-=0.1')
+        .fromTo('.hero-cta', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.1')
+        .fromTo('.hero-scroll', { opacity: 0 }, { opacity: 0.5, duration: 0.4 }, '-=0.1')
 
       gsap.to('.hero-img', {
         yPercent: 20,
@@ -40,59 +41,47 @@ export default function Hero() {
           alt="Piatto gourmet Masa Chalet"
           className="hero-img w-full h-full object-cover"
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,15,10,0.88) 0%, rgba(10,15,10,0.35) 40%, rgba(10,15,10,0.7) 100%)' }} />
+        <div className="hero-overlay absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(10,15,10,0.65) 0%, rgba(10,15,10,0.85) 70%, rgba(10,15,10,0.95) 100%)' }} />
       </div>
 
-      <div
-        className="hero-side-img hidden lg:block absolute"
-        style={{ right: '5%', bottom: '8%', width: 'clamp(180px, 18vw, 300px)', zIndex: 5 }}
-      >
-        <img
-          src={sideImg}
-          alt="Chef al lavoro"
-          className="w-full object-cover"
-          style={{ aspectRatio: '3/4', border: '1px solid rgba(168,185,160,0.25)' }}
-        />
-      </div>
-
-      <div className="relative z-10 flex flex-col justify-end" style={{ minHeight: '100vh', padding: 'clamp(2rem, 5vw, 5rem) clamp(1.5rem, 5vw, 6rem) clamp(4rem, 10vh, 8rem)' }}>
+      <div className="relative z-10 flex flex-col items-center justify-center text-center" style={{ minHeight: '100vh', padding: 'clamp(2rem, 5vw, 5rem) clamp(1.5rem, 5vw, 4rem)' }}>
         <img
           src={logo}
           alt="Masa Chalet Logo"
           className="hero-logo"
-          style={{ width: 'clamp(60px, 8vw, 100px)', marginBottom: 'var(--space-md)' }}
+          style={{ width: 'clamp(70px, 10vw, 120px)', marginBottom: 'var(--space-xs)' }}
         />
 
         <h1
           className="hero-title overflow-hidden"
-          style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-hero)', fontWeight: 600, lineHeight: 0.9, letterSpacing: '-0.02em', maxWidth: '900px' }}
+          style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-hero)', fontWeight: 500, lineHeight: 0.85, letterSpacing: '-0.02em' }}
         >
           <span className="block">Masa</span>
-          <span className="block" style={{ paddingLeft: 'clamp(1rem, 5vw, 5rem)' }}>Chalet</span>
+          <span className="block" style={{ fontStyle: 'italic', color: 'var(--c-sage-light)' }}>Chalet</span>
         </h1>
 
-        <div style={{ marginTop: 'var(--space-md)', marginLeft: 'clamp(0rem, 3vw, 3rem)' }}>
-          <p
-            className="hero-claim"
-            style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', fontStyle: 'italic', color: 'var(--c-sage)', letterSpacing: '0.02em' }}
-          >
-            L&rsquo;evoluzione della tradizione
-          </p>
+        <div className="hero-line-bottom" style={{ width: 'clamp(40px, 8vw, 80px)', height: '1px', background: 'var(--c-sage)', margin: 'var(--space-md) 0', opacity: 0.5 }} />
 
-          <p
-            className="hero-location"
-            style={{ marginTop: 'var(--space-sm)', fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-cream-muted)' }}
-          >
-            Passo della Presolana &middot; 1.297 m s.l.m. &middot; Orobie
-          </p>
-        </div>
+        <p
+          className="hero-claim"
+          style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontStyle: 'italic', color: 'var(--c-sage)', letterSpacing: '0.3em', textTransform: 'uppercase' }}
+        >
+          L&rsquo;evoluzione della tradizione
+        </p>
 
-        <div className="flex flex-wrap gap-4" style={{ marginTop: 'var(--space-lg)', marginLeft: 'clamp(0rem, 2vw, 2rem)' }}>
+        <p
+          className="hero-location"
+          style={{ marginTop: 'var(--space-sm)', fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-cream-muted)' }}
+        >
+          Passo della Presolana &middot; 1.297 m s.l.m. &middot; Orobie
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-4" style={{ marginTop: 'var(--space-lg)' }}>
           <a
             href="tel:+390346320081"
             className="hero-cta"
             style={{
-              padding: '0.85rem 2rem',
+              padding: '0.85rem 2.5rem',
               background: 'var(--c-sage)',
               color: 'var(--c-black)',
               fontWeight: 600,
@@ -110,7 +99,7 @@ export default function Hero() {
             href="#menu"
             className="hero-cta"
             style={{
-              padding: '0.85rem 2rem',
+              padding: '0.85rem 2.5rem',
               border: '1px solid rgba(240,233,220,0.3)',
               color: 'var(--c-cream)',
               letterSpacing: '0.15em',
@@ -126,7 +115,10 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute hidden md:block" style={{ left: 'clamp(1.5rem, 5vw, 6rem)', bottom: 0, width: '1px', height: '120px', background: 'var(--c-sage)', opacity: 0.4 }} />
+      <div className="hero-scroll absolute left-1/2 bottom-0" style={{ transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', paddingBottom: 'clamp(1.5rem, 3vh, 2.5rem)' }}>
+        <span style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--c-cream-muted)' }}>Scroll</span>
+        <div style={{ width: '1px', height: '30px', background: 'var(--c-sage)', opacity: 0.5 }} />
+      </div>
     </section>
   )
 }
