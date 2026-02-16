@@ -10,7 +10,7 @@ export default function Contatti() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.contatti-el', { y: 50, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power3.out',
         scrollTrigger: { trigger: ref.current, start: 'top 70%' }
       })
     }, ref)

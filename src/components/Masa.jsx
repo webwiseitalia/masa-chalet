@@ -16,27 +16,27 @@ export default function Masa() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.masa-title', { y: 80, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: '.masa-title', start: 'top 85%' }
       })
 
       gsap.fromTo('.masa-sala', { clipPath: 'inset(0 100% 0 0)' }, {
-        clipPath: 'inset(0 0% 0 0)', duration: 1.4, ease: 'power4.inOut',
+        clipPath: 'inset(0 0% 0 0)', duration: 0.8, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.masa-sala', start: 'top 75%' }
       })
 
       gsap.fromTo('.masa-detail', { clipPath: 'inset(100% 0 0 0)', opacity: 0 }, {
-        clipPath: 'inset(0% 0 0 0)', opacity: 1, duration: 1.2, ease: 'power4.inOut',
+        clipPath: 'inset(0% 0 0 0)', opacity: 1, duration: 0.7, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.masa-detail', start: 'top 80%' }
       })
 
       gsap.fromTo('.masa-text-block', { y: 50, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out',
         scrollTrigger: { trigger: '.masa-filosofia', start: 'top 70%' }
       })
 
       gsap.fromTo('.persona-card', { y: 80, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 1, stagger: 0.25, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out',
         scrollTrigger: { trigger: '.persona-grid', start: 'top 75%' }
       })
 
@@ -47,12 +47,12 @@ export default function Masa() {
       })
 
       gsap.fromTo('.masa-hero-plate', { clipPath: 'inset(100% 0 0 0)' }, {
-        clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.inOut',
+        clipPath: 'inset(0% 0 0 0)', duration: 0.8, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.masa-hero-plate', start: 'top 80%' }
       })
 
       gsap.fromTo('.masa-bg-logo', { opacity: 0, scale: 0.9 }, {
-        opacity: 0.05, scale: 1, duration: 1.5, ease: 'power2.out',
+        opacity: 0.05, scale: 1, duration: 0.8, ease: 'power2.out',
         scrollTrigger: { trigger: '.masa-bg-logo', start: 'top 90%' }
       })
     }, sectionRef)

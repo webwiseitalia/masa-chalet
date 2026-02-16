@@ -40,12 +40,12 @@ export default function Gallery() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.gal-title', { y: 80, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: '.gal-title', start: 'top 85%' }
       })
 
       gsap.fromTo('.gal-item', { y: 60, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.7, stagger: { each: 0.06, from: 'random' }, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.4, stagger: { each: 0.04, from: 'random' }, ease: 'power3.out',
         scrollTrigger: { trigger: '.gal-grid', start: 'top 80%' }
       })
     }, ref)

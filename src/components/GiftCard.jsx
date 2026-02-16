@@ -11,12 +11,12 @@ export default function GiftCard() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.gift-img', { x: 80, opacity: 0, rotate: 3 }, {
-        x: 0, opacity: 1, rotate: 0, duration: 1.2, ease: 'power3.out',
+        x: 0, opacity: 1, rotate: 0, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: ref.current, start: 'top 70%' }
       })
 
       gsap.fromTo('.gift-text > *', { y: 40, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power3.out',
         scrollTrigger: { trigger: '.gift-text', start: 'top 75%' }
       })
     }, ref)

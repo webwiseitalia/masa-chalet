@@ -14,13 +14,13 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
-      tl.fromTo('.hero-img', { scale: 1.3, clipPath: 'inset(100% 0 0 0)' }, { scale: 1, clipPath: 'inset(0% 0 0 0)', duration: 1.6 })
-        .fromTo('.hero-side-img', { clipPath: 'inset(0 100% 0 0)', opacity: 0 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.2 }, '-=0.8')
-        .fromTo('.hero-logo', { opacity: 0, scale: 0.7, rotate: -10 }, { opacity: 1, scale: 1, rotate: 0, duration: 1 }, '-=1')
-        .fromTo('.hero-title span', { y: 120, opacity: 0, skewY: 8 }, { y: 0, opacity: 1, skewY: 0, duration: 1, stagger: 0.12 }, '-=0.7')
-        .fromTo('.hero-claim', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.3')
-        .fromTo('.hero-location', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.3')
-        .fromTo('.hero-cta', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.15 }, '-=0.2')
+      tl.fromTo('.hero-img', { scale: 1.3, clipPath: 'inset(100% 0 0 0)' }, { scale: 1, clipPath: 'inset(0% 0 0 0)', duration: 0.9 })
+        .fromTo('.hero-side-img', { clipPath: 'inset(0 100% 0 0)', opacity: 0 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 0.7 }, '-=0.5')
+        .fromTo('.hero-logo', { opacity: 0, scale: 0.7, rotate: -10 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.6 }, '-=0.5')
+        .fromTo('.hero-title span', { y: 120, opacity: 0, skewY: 8 }, { y: 0, opacity: 1, skewY: 0, duration: 0.6, stagger: 0.08 }, '-=0.4')
+        .fromTo('.hero-claim', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, '-=0.2')
+        .fromTo('.hero-location', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, '-=0.2')
+        .fromTo('.hero-cta', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.1 }, '-=0.15')
 
       gsap.to('.hero-img', {
         yPercent: 20,

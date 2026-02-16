@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import chefPlating from '../assets/foto/foto-10.webp'
 import piatto from '../assets/foto/foto-34.webp'
+import logo from '../assets/logomasachalet-Photoroom.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -18,18 +19,23 @@ export default function Degustazione() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.deg-img-main', { clipPath: 'inset(100% 0 0 0)' }, {
-        clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.inOut',
+        clipPath: 'inset(0% 0 0 0)', duration: 0.8, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.deg-img-main', start: 'top 75%' }
       })
 
       gsap.fromTo('.deg-img-side', { clipPath: 'inset(0 0 0 100%)' }, {
-        clipPath: 'inset(0 0 0 0%)', duration: 1.2, ease: 'power4.inOut',
+        clipPath: 'inset(0 0 0 0%)', duration: 0.7, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.deg-img-side', start: 'top 80%' }
       })
 
       gsap.fromTo('.deg-content > *', { y: 40, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power3.out',
         scrollTrigger: { trigger: '.deg-content', start: 'top 70%' }
+      })
+
+      gsap.fromTo('.deg-bg-logo', { opacity: 0, scale: 0.9 }, {
+        opacity: 0.04, scale: 1, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: { trigger: '.deg-bg-logo', start: 'top 90%' }
       })
     }, ref)
 
@@ -37,8 +43,24 @@ export default function Degustazione() {
   }, [])
 
   return (
-    <section ref={ref} id="degustazione" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)' }}>
-      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1rem, 2vw, 2rem)', alignItems: 'start' }}>
+    <section ref={ref} id="degustazione" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', position: 'relative', overflow: 'hidden' }}>
+      <img
+        src={logo}
+        alt=""
+        aria-hidden="true"
+        className="deg-bg-logo hidden md:block"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'clamp(500px, 55vw, 800px)',
+          opacity: 0,
+          pointerEvents: 'none',
+          filter: 'grayscale(0.4)',
+        }}
+      />
+      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1rem, 2vw, 2rem)', alignItems: 'start', position: 'relative', zIndex: 1 }}>
         {/* Images column — stacked, offset */}
         <div style={{ gridColumn: '1 / 6', position: 'relative' }}>
           <div className="deg-img-main overflow-hidden">

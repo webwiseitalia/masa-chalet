@@ -102,7 +102,7 @@ export default function Navbar() {
             initial={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)' }}
             animate={{ clipPath: 'circle(150% at calc(100% - 2.5rem) 2.5rem)' }}
             exit={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 2.5rem)' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 flex flex-col justify-end"
             style={{ background: 'var(--c-dark)', padding: 'clamp(6rem, 15vh, 10rem) clamp(2rem, 6vw, 4rem) clamp(3rem, 8vh, 5rem)' }}
           >
@@ -114,7 +114,7 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.15 + i * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', color: 'var(--c-cream)', lineHeight: 1.1, transition: 'color 0.3s' }}
                   onMouseEnter={e => e.target.style.color = 'var(--c-sage)'}
                   onMouseLeave={e => e.target.style.color = 'var(--c-cream)'}
@@ -126,7 +126,7 @@ export default function Navbar() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
               className="mt-12"
               style={{ color: 'var(--c-cream-muted)', fontSize: 'var(--text-sm)' }}
             >

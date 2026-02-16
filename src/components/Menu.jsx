@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import piatto1 from '../assets/foto/foto-4.webp'
 import piatto2 from '../assets/foto/foto-38.webp'
 import piatto3 from '../assets/foto/foto-2.webp'
+import logo from '../assets/logomasachalet-Photoroom.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -72,18 +73,23 @@ export default function Menu() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.menu-heading', { y: 100, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 1.2, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: '.menu-heading', start: 'top 85%' }
       })
 
       gsap.fromTo('.menu-img', { clipPath: 'inset(0 0 100% 0)' }, {
-        clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'power4.inOut', stagger: 0.2,
+        clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'power4.inOut', stagger: 0.12,
         scrollTrigger: { trigger: '.menu-images', start: 'top 75%' }
       })
 
       gsap.fromTo('.menu-category', { y: 40, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.12, ease: 'power3.out',
         scrollTrigger: { trigger: '.menu-body', start: 'top 75%' }
+      })
+
+      gsap.fromTo('.menu-bg-logo', { opacity: 0, scale: 0.9 }, {
+        opacity: 0.04, scale: 1, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: { trigger: '.menu-bg-logo', start: 'top 90%' }
       })
     }, ref)
 
@@ -91,7 +97,22 @@ export default function Menu() {
   }, [])
 
   return (
-    <section ref={ref} id="menu" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark)' }}>
+    <section ref={ref} id="menu" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark)', position: 'relative', overflow: 'hidden' }}>
+      <img
+        src={logo}
+        alt=""
+        aria-hidden="true"
+        className="menu-bg-logo hidden md:block"
+        style={{
+          position: 'absolute',
+          right: '-5%',
+          bottom: 'clamp(2rem, 8vw, 8rem)',
+          width: 'clamp(400px, 50vw, 700px)',
+          opacity: 0,
+          pointerEvents: 'none',
+          filter: 'grayscale(0.4)',
+        }}
+      />
       <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', marginBottom: 'var(--space-lg)' }}>
         <p className="menu-heading" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
           Sapori d&rsquo;alta quota

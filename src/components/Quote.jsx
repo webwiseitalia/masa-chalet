@@ -11,12 +11,12 @@ export default function Quote() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.quote-text', { y: 60, opacity: 0, skewY: 3 }, {
-        y: 0, opacity: 1, skewY: 0, duration: 1.4, ease: 'power3.out',
+        y: 0, opacity: 1, skewY: 0, duration: 0.8, ease: 'power3.out',
         scrollTrigger: { trigger: ref.current, start: 'top 60%' }
       })
 
       gsap.fromTo('.quote-attr', { y: 30, opacity: 0 }, {
-        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out',
         scrollTrigger: { trigger: ref.current, start: 'top 50%' }
       })
 
