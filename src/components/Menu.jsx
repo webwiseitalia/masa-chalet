@@ -126,9 +126,9 @@ export default function Menu() {
       </div>
 
       <div className="menu-images" style={{ display: 'grid', gridTemplateColumns: '2fr 1.2fr 1.5fr', gap: 'clamp(0.5rem, 1vw, 0.75rem)', padding: '0 clamp(1.5rem, 4vw, 3rem)', marginBottom: 'var(--space-xl)' }}>
-        <div className="menu-img overflow-hidden"><img src={piatto1} alt="Tortelli con brodo" className="w-full object-cover" style={{ aspectRatio: '4/3' }} /></div>
-        <div className="menu-img overflow-hidden" style={{ marginTop: 'clamp(2rem, 5vw, 5rem)' }}><img src={piatto2} alt="Piatto gourmet colorato" className="w-full object-cover" style={{ aspectRatio: '3/4' }} /></div>
-        <div className="menu-img overflow-hidden"><img src={piatto3} alt="Crudo con salsa verde" className="w-full object-cover" style={{ aspectRatio: '4/5' }} /></div>
+        <div className="menu-img overflow-hidden"><img src={piatto1} alt="Tortelli con brodo" title="Tortelli con brodo - Antipasto" loading="lazy" width={800} height={600} className="w-full object-cover" style={{ aspectRatio: '4/3' }} /></div>
+        <div className="menu-img overflow-hidden" style={{ marginTop: 'clamp(2rem, 5vw, 5rem)' }}><img src={piatto2} alt="Piatto gourmet colorato" title="Piatto gourmet del menù" loading="lazy" width={600} height={800} className="w-full object-cover" style={{ aspectRatio: '3/4' }} /></div>
+        <div className="menu-img overflow-hidden"><img src={piatto3} alt="Crudo con salsa verde" title="Crudo con salsa verde" loading="lazy" width={640} height={800} className="w-full object-cover" style={{ aspectRatio: '4/5' }} /></div>
       </div>
 
       <div className="menu-body" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)' }}>

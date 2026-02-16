@@ -38,7 +38,7 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)' }}>
           <a href="#" className="flex items-center gap-3 relative z-50">
-            <img src={logo} alt="Masa Chalet" className="w-9 h-9 md:w-11 md:h-11" />
+            <img src={logo} alt="Masa Chalet" title="Logo Masa Chalet" loading="eager" width={44} height={44} className="w-9 h-9 md:w-11 md:h-11" />
             <span
               className="hidden sm:block tracking-[0.15em] uppercase"
               style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)', color: 'var(--c-cream)' }}

@@ -64,10 +64,10 @@ export default function Degustazione() {
         {/* Images column — stacked, offset */}
         <div style={{ gridColumn: '1 / 6', position: 'relative' }}>
           <div className="deg-img-main overflow-hidden">
-            <img src={chefPlating} alt="Piatto servito dallo Chef" className="w-full object-cover" style={{ aspectRatio: '3/4' }} />
+            <img src={chefPlating} alt="Piatto servito dallo Chef" title="Lo Chef prepara un piatto del menu degustazione" loading="lazy" width={600} height={800} className="w-full object-cover" style={{ aspectRatio: '3/4' }} />
           </div>
           <div className="deg-img-side hidden md:block" style={{ position: 'absolute', right: '-20%', bottom: '-8%', width: '55%', zIndex: 2 }}>
-            <img src={piatto} alt="Dessert artistico" className="w-full object-cover" style={{ aspectRatio: '4/5', border: '3px solid var(--c-black)' }} />
+            <img src={piatto} alt="Dessert artistico" title="Dessert artistico del menu degustazione" loading="lazy" width={480} height={600} className="w-full object-cover" style={{ aspectRatio: '4/5', border: '3px solid var(--c-black)' }} />
           </div>
         </div>
 

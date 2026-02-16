@@ -57,7 +57,7 @@ export default function GiftCard() {
         </div>
 
         <div className="gift-img" style={{ gridColumn: '7 / 13' }}>
-          <img src={giftImg} alt="Gift Card Masa Chalet" className="w-full object-cover" style={{ aspectRatio: '4/3' }} />
+          <img src={giftImg} alt="Gift Card Masa Chalet" title="Gift Card - Regala un'esperienza al Masa Chalet" loading="lazy" width={800} height={600} className="w-full object-cover" style={{ aspectRatio: '4/3' }} />
         </div>
       </div>
     </section>

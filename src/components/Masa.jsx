@@ -83,6 +83,10 @@ export default function Masa() {
           <img
             src={heroPlate}
             alt="Piatto gourmet dello chef"
+            title="Piatto gourmet dello chef Emanuele Bruneo"
+            loading="lazy"
+            width={520}
+            height={693}
             className="w-full object-cover"
             style={{ aspectRatio: '3/4' }}
           />
@@ -105,6 +109,10 @@ export default function Masa() {
             <img
               src={salaImg}
               alt="Sala del ristorante Masa Chalet"
+              title="Sala del ristorante Masa Chalet al Passo della Presolana"
+              loading="lazy"
+              width={960}
+              height={660}
               className="w-full object-cover"
               style={{ aspectRatio: '16/11' }}
             />
@@ -132,7 +140,7 @@ export default function Masa() {
         </div>
 
         <div className="masa-detail hidden md:block" style={{ position: 'absolute', left: 'clamp(3rem, 8vw, 8rem)', bottom: '-3rem', width: 'clamp(140px, 14vw, 220px)', zIndex: 3 }}>
-          <img src={detailImg} alt="Dettaglio cucina" className="w-full object-cover" style={{ aspectRatio: '1/1', border: '1px solid rgba(168,185,160,0.2)' }} />
+          <img src={detailImg} alt="Dettaglio cucina" title="Dettaglio della cucina Masa Chalet" loading="lazy" width={220} height={220} className="w-full object-cover" style={{ aspectRatio: '1/1', border: '1px solid rgba(168,185,160,0.2)' }} />
         </div>
       </div>
 
@@ -142,6 +150,10 @@ export default function Masa() {
             <img
               src={chefImg}
               alt="Chef Emanuele Bruneo"
+              title="Chef Emanuele Bruneo - Masa Chalet"
+              loading="lazy"
+              width={600}
+              height={800}
               className="w-full object-cover transition-transform duration-1000 hover:scale-105"
               style={{ aspectRatio: '3/4' }}
             />
@@ -160,6 +172,10 @@ export default function Masa() {
             <img
               src={samanthaImg}
               alt="Samantha - Sala e accoglienza"
+              title="Samantha - Sala e accoglienza Masa Chalet"
+              loading="lazy"
+              width={600}
+              height={800}
               className="w-full object-cover transition-transform duration-1000 hover:scale-105"
               style={{ aspectRatio: '3/4' }}
             />

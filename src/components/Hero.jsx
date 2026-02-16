@@ -39,6 +39,10 @@ export default function Hero() {
         <img
           src={heroImg}
           alt="Piatto gourmet Masa Chalet"
+          title="Piatto gourmet del ristorante Masa Chalet"
+          loading="eager"
+          width={1920}
+          height={1080}
           className="hero-img w-full h-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(10,15,10,0.65) 0%, rgba(10,15,10,0.85) 70%, rgba(10,15,10,0.95) 100%)' }} />
@@ -48,6 +52,10 @@ export default function Hero() {
         <img
           src={logo}
           alt="Masa Chalet Logo"
+          title="Logo Masa Chalet"
+          loading="eager"
+          width={120}
+          height={120}
           className="hero-logo"
           style={{ width: 'clamp(70px, 10vw, 120px)', marginBottom: 'var(--space-xs)' }}
         />

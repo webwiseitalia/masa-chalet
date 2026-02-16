@@ -33,7 +33,7 @@ export default function Quote() {
   return (
     <section ref={ref} className="relative overflow-hidden" style={{ padding: 'var(--space-2xl) 0' }}>
       <div className="absolute inset-0">
-        <img src={bgImg} alt="" className="quote-bg w-full h-[130%] object-cover" style={{ objectPosition: 'center 30%' }} aria-hidden="true" />
+        <img src={bgImg} alt="" title="Sfondo citazione Masa Chalet" loading="lazy" width={1920} height={1080} className="quote-bg w-full h-[130%] object-cover" style={{ objectPosition: 'center 30%' }} aria-hidden="true" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, var(--c-black) 0%, rgba(10,15,10,0.75) 30%, rgba(10,15,10,0.75) 70%, var(--c-black) 100%)' }} />
       </div>
 

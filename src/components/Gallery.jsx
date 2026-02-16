@@ -19,18 +19,18 @@ import foto36 from '../assets/foto/foto-36.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 const images = [
-  { src: foto3, alt: 'Piatto colorato con salse' },
-  { src: foto14, alt: 'Materie prime: tartufo' },
-  { src: foto5, alt: 'Spaghetti con bottarga' },
-  { src: foto1, alt: 'Dolce artigianale' },
-  { src: foto26, alt: 'Piatto con sfondo verde' },
-  { src: foto9, alt: 'Uovo panato con castagne' },
-  { src: foto21, alt: 'Risotto mantecato' },
-  { src: foto6, alt: 'Tataki con crema' },
-  { src: foto36, alt: 'Verdure grigliate con carne' },
-  { src: foto23, alt: 'Piatto di pesce' },
-  { src: foto19, alt: 'Dessert elegante' },
-  { src: foto28, alt: 'Pane artigianale' },
+  { src: foto3, alt: 'Piatto colorato con salse', title: 'Piatto colorato con salse gourmet' },
+  { src: foto14, alt: 'Materie prime: tartufo', title: 'Materie prime selezionate - Tartufo' },
+  { src: foto5, alt: 'Spaghetti con bottarga', title: 'Spaghetti con bottarga' },
+  { src: foto1, alt: 'Dolce artigianale', title: 'Dolce artigianale dello chef' },
+  { src: foto26, alt: 'Piatto con sfondo verde', title: 'Creazione culinaria gourmet' },
+  { src: foto9, alt: 'Uovo panato con castagne', title: 'Uovo panato con castagne e Strachitunt' },
+  { src: foto21, alt: 'Risotto mantecato', title: 'Risotto mantecato con scorza nera' },
+  { src: foto6, alt: 'Tataki con crema', title: 'Tataki con crema e guarnizioni' },
+  { src: foto36, alt: 'Verdure grigliate con carne', title: 'Verdure grigliate con carne selezionata' },
+  { src: foto23, alt: 'Piatto di pesce', title: 'Piatto di pesce del lago' },
+  { src: foto19, alt: 'Dessert elegante', title: 'Dessert elegante dello chef' },
+  { src: foto28, alt: 'Pane artigianale', title: 'Pane artigianale fatto in casa' },
 ]
 
 export default function Gallery() {
@@ -87,6 +87,9 @@ export default function Gallery() {
               <img
                 src={img.src}
                 alt={img.alt}
+                title={img.title}
+                width={600}
+                height={800}
                 className="w-full object-cover"
                 style={{ transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}
                 loading="lazy"
