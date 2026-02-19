@@ -37,7 +37,7 @@ export default function Quote() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, var(--c-black) 0%, rgba(10,15,10,0.75) 30%, rgba(10,15,10,0.75) 70%, var(--c-black) 100%)' }} />
       </div>
 
-      <div className="relative z-10" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', maxWidth: '900px', marginLeft: 'clamp(1rem, 10vw, 12rem)' }}>
+      <div className="relative z-10 quote-content" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', maxWidth: '900px', marginLeft: 'clamp(1rem, 10vw, 12rem)' }}>
         <span className="rule-accent" style={{ marginBottom: 'var(--space-md)', display: 'block' }} />
         <blockquote className="quote-text" style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'var(--text-2xl)', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
           Siamo più di semplici cuochi: siamo creatori di emozioni gastronomiche, appassionati nel trasformare ogni piatto in un&rsquo;opera d&rsquo;arte per il palato.

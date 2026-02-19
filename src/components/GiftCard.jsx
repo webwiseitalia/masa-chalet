@@ -26,7 +26,7 @@ export default function GiftCard() {
 
   return (
     <section ref={ref} id="giftcard" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark-warm)' }}>
-      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1.5rem, 3vw, 3rem)', alignItems: 'center' }}>
+      <div className="gift-layout" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1.5rem, 3vw, 3rem)', alignItems: 'center' }}>
         <div className="gift-text" style={{ gridColumn: '1 / 7' }}>
           <p style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
             Un regalo speciale

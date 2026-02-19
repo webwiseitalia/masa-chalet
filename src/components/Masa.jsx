@@ -79,7 +79,7 @@ export default function Masa() {
         }}
       />
       <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', position: 'relative', zIndex: 1 }}>
-        <div className="masa-hero-plate hidden md:block" style={{ position: 'absolute', left: 'clamp(1.5rem, 4vw, 3rem)', top: 0, width: 'clamp(280px, 35vw, 520px)', overflow: 'hidden' }}>
+        <div className="masa-hero-plate hidden lg:block" style={{ position: 'absolute', left: 'clamp(1.5rem, 4vw, 3rem)', top: 0, width: 'clamp(280px, 35vw, 520px)', overflow: 'hidden' }}>
           <img
             src={heroPlate}
             alt="Piatto gourmet dello chef"
@@ -91,7 +91,7 @@ export default function Masa() {
             style={{ aspectRatio: '3/4' }}
           />
         </div>
-        <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'clamp(1rem, 8vw, 10rem)', position: 'relative', zIndex: 2 }}>
+        <div className="masa-title-block" style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'clamp(1rem, 8vw, 10rem)', position: 'relative', zIndex: 2 }}>
           <p className="masa-title" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
             Chi siamo
           </p>
@@ -104,8 +104,9 @@ export default function Masa() {
       </div>
 
       <div className="masa-filosofia" style={{ marginTop: 'var(--space-lg)', position: 'relative' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)' }}>
-          <div className="masa-sala" style={{ gridColumn: '1 / 8', overflow: 'hidden' }}>
+        {/* Mobile: flex column, Desktop: overlapping grid */}
+        <div className="flex flex-col lg:grid" style={{ gridTemplateColumns: 'repeat(12, 1fr)' }}>
+          <div className="masa-sala overflow-hidden" style={{ gridColumn: '1 / 8' }}>
             <img
               src={salaImg}
               alt="Sala del ristorante Masa Chalet"
@@ -118,7 +119,7 @@ export default function Masa() {
             />
           </div>
 
-          <div style={{ gridColumn: '6 / 13', gridRow: '1', alignSelf: 'center', position: 'relative', zIndex: 2, padding: 'clamp(2rem, 5vw, 5rem)', background: 'var(--c-dark-warm)', marginTop: 'clamp(3rem, 8vw, 8rem)', marginBottom: 'clamp(1rem, 3vw, 3rem)' }}>
+          <div className="masa-filosofia-text" style={{ padding: 'clamp(2rem, 5vw, 5rem)', background: 'var(--c-dark-warm)', position: 'relative', zIndex: 2, gridColumn: '6 / 13', gridRow: '1', alignSelf: 'center', marginTop: 'clamp(3rem, 8vw, 8rem)', marginBottom: 'clamp(1rem, 3vw, 3rem)' }}>
             <p className="masa-text-block" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
               La nostra filosofia
             </p>
@@ -139,7 +140,7 @@ export default function Masa() {
           </div>
         </div>
 
-        <div className="masa-detail hidden md:block" style={{ position: 'absolute', left: 'clamp(3rem, 8vw, 8rem)', bottom: '-3rem', width: 'clamp(140px, 14vw, 220px)', zIndex: 3 }}>
+        <div className="masa-detail hidden lg:block" style={{ position: 'absolute', left: 'clamp(3rem, 8vw, 8rem)', bottom: '-3rem', width: 'clamp(140px, 14vw, 220px)', zIndex: 3 }}>
           <img src={detailImg} alt="Dettaglio cucina" title="Dettaglio della cucina Masa Chalet" loading="lazy" width={220} height={220} className="w-full object-cover" style={{ aspectRatio: '1/1', border: '1px solid rgba(168,185,160,0.2)' }} />
         </div>
       </div>

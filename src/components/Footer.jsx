@@ -5,7 +5,7 @@ import siteData from '../constants/siteData'
 export default function Footer() {
   return (
     <footer style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-md)', borderTop: '1px solid rgba(240,233,220,0.06)' }}>
-      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(2rem, 4vw, 4rem)' }}>
+      <div className="footer-grid" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(2rem, 4vw, 4rem)' }}>
         {/* Brand — large, expressive */}
         <div style={{ gridColumn: '1 / 6' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: 'var(--space-sm)' }}>

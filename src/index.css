@@ -112,38 +112,118 @@
 
 /* Mobile responsive: stack 12-col grids on small screens */
 @media (max-width: 768px) {
-  .masa-intro {
-    display: flex !important;
-    flex-direction: column;
+  /* Masa section - title block positioning */
+  .masa-title-block {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
   }
-  .masa-intro > * {
+
+  /* Masa section - filosofia text block */
+  .masa-filosofia-text {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     grid-column: auto !important;
+    grid-row: auto !important;
+    align-self: auto !important;
   }
-  .masa-filosofia > div {
-    display: flex !important;
-    flex-direction: column;
-  }
-  .masa-filosofia > div > * {
-    grid-column: auto !important;
-  }
+
+  /* Masa section - persona grid */
   .persona-grid {
     display: flex !important;
     flex-direction: column;
+    gap: clamp(2.5rem, 6vw, 3.5rem) !important;
   }
   .persona-grid .persona-card {
     margin-top: 0 !important;
+    grid-column: auto !important;
   }
+
+  /* Menu section - images */
   .menu-grid {
     grid-template-columns: 1fr !important;
   }
+  .menu-images {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .menu-images > :nth-child(2) {
+    margin-top: 0 !important;
+  }
+  .menu-images > :nth-child(3) {
+    display: none;
+  }
+
+  /* Degustazione section */
+  .deg-layout {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2rem !important;
+  }
+  .deg-layout > * {
+    grid-column: auto !important;
+  }
+  .deg-content {
+    padding-top: 0 !important;
+  }
+
+  /* GiftCard section */
+  .gift-layout {
+    display: flex !important;
+    flex-direction: column-reverse;
+    gap: 2rem !important;
+  }
+  .gift-layout > * {
+    grid-column: auto !important;
+  }
+
+  /* Contatti section */
+  .contatti-layout {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2rem !important;
+  }
+  .contatti-layout > * {
+    grid-column: auto !important;
+  }
+
+  /* Footer */
+  .footer-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2rem !important;
+  }
+  .footer-grid > * {
+    grid-column: auto !important;
+  }
+
+  /* Gallery */
   .gal-grid {
     columns: 2 !important;
+  }
+
+  /* Quote section */
+  .quote-content {
+    margin-left: 0 !important;
+  }
+
+  /* Menu item tags - wrap on mobile */
+  .menu-item {
+    flex-wrap: wrap !important;
   }
 }
 
 @media (max-width: 480px) {
   .gal-grid {
     columns: 1 !important;
+  }
+  .menu-images {
+    grid-template-columns: 1fr !important;
+  }
+  .menu-images > :nth-child(2) {
+    display: none;
+  }
+  .menu-images > :nth-child(3) {
+    display: none;
   }
 }
 

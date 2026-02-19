@@ -20,7 +20,7 @@ export default function Contatti() {
 
   return (
     <section ref={ref} id="contatti" style={{ paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)', background: 'var(--c-dark)' }}>
-      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(2rem, 4vw, 4rem)' }}>
+      <div className="contatti-layout" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(2rem, 4vw, 4rem)' }}>
         {/* Title spanning full — left aligned */}
         <div style={{ gridColumn: '1 / 13', marginBottom: 'var(--space-md)' }}>
           <p className="contatti-el" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>

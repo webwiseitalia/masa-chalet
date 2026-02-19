@@ -117,7 +117,7 @@ export default function Menu() {
         <p className="menu-heading" style={{ fontSize: 'var(--text-xs)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--c-sage)', marginBottom: 'var(--space-sm)' }}>
           Sapori d&rsquo;alta quota
         </p>
-        <h2 className="menu-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-massive)', fontWeight: 500, lineHeight: 0.85, letterSpacing: '-0.03em', opacity: 0.12 }}>
+        <h2 className="menu-heading hidden md:block" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-massive)', fontWeight: 500, lineHeight: 0.85, letterSpacing: '-0.03em', opacity: 0.12 }}>
           Menù
         </h2>
         <h2 className="menu-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-3xl)', fontWeight: 500, lineHeight: 1, marginTop: '-0.5em', position: 'relative', zIndex: 2 }}>

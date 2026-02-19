@@ -60,7 +60,7 @@ export default function Degustazione() {
           filter: 'grayscale(0.4)',
         }}
       />
-      <div style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1rem, 2vw, 2rem)', alignItems: 'start', position: 'relative', zIndex: 1 }}>
+      <div className="deg-layout" style={{ padding: '0 clamp(1.5rem, 4vw, 3rem)', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 'clamp(1rem, 2vw, 2rem)', alignItems: 'start', position: 'relative', zIndex: 1 }}>
         {/* Images column — stacked, offset */}
         <div style={{ gridColumn: '1 / 6', position: 'relative' }}>
           <div className="deg-img-main overflow-hidden">

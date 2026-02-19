@@ -123,7 +123,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-scroll absolute left-1/2 bottom-0" style={{ transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', paddingBottom: 'clamp(1.5rem, 3vh, 2.5rem)' }}>
+      <div className="hero-scroll absolute left-1/2 bottom-0 hidden md:flex" style={{ transform: 'translateX(-50%)', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', paddingBottom: 'clamp(1.5rem, 3vh, 2.5rem)' }}>
         <span style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--c-cream-muted)' }}>Scroll</span>
         <div style={{ width: '1px', height: '30px', background: 'var(--c-sage)', opacity: 0.5 }} />
       </div>
